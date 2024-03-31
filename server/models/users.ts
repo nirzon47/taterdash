@@ -41,9 +41,4 @@ userSchema.pre('save', async function () {
 	this.password = hash
 })
 
-// Check if password is valid
-userSchema.methods.isValidPassword = function (password: string) {
-	return Bun.password.verify(this.password, password)
-}
-
 export const userModel = model('user', userSchema)
