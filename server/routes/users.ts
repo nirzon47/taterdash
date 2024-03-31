@@ -17,4 +17,25 @@ router.post(
 	userController.logoutUser
 )
 
+// Add Address
+router.post(
+	'/address',
+	authVerification(['admin', 'user']),
+	userController.addAddress
+)
+
+// Update Address
+router.patch(
+	'/address',
+	authVerification(['admin', 'user']),
+	userController.updateAddress
+)
+
+// Get Address
+router.get(
+	'/address',
+	authVerification(['admin', 'user']),
+	userController.getAddress
+)
+
 export { router as usersRouter }

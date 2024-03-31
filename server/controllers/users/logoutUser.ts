@@ -1,5 +1,6 @@
 import { userModel } from '../../models/users'
 
+// Controller for logging out user
 export const logoutUser = async (req: any, res: any) => {
 	try {
 		console.log(req.user)
