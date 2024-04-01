@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { userModel } from '../models/users'
 
+// Verifies tokes, refreshes tokens, and checks permissions
 const authVerification =
 	([roles]: any) =>
 	async (req: any, res: any, _next: any) => {
