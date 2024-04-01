@@ -6,6 +6,7 @@ import restaurantName from '../middlewares/restaurantName'
 
 const router = Router()
 
+/// Restaurant APIs
 // Add Restaurant
 router.post(
 	'/',
@@ -23,13 +24,6 @@ router.patch(
 	restaurantController.editRestaurant
 )
 
-// Delete Restaurant
-router.delete(
-	'/:restaurantId',
-	[authVerification(['admin']), restaurantName],
-	restaurantController.deleteRestaurant
-)
-
 // Edit Image
 router.patch(
 	'/image/:restaurantId',
@@ -37,11 +31,41 @@ router.patch(
 	restaurantController.editImage
 )
 
+// Delete Restaurant
+router.delete(
+	'/:restaurantId',
+	[authVerification(['admin']), restaurantName],
+	restaurantController.deleteRestaurant
+)
+
+/// Item APIs
+
 // Add Item
 router.post(
 	'/item/:restaurantId',
 	[authVerification(['admin']), restaurantName],
 	restaurantController.addItem
+)
+
+// Get Items
+router.get(
+	'/item/:restaurantId',
+	[authVerification(['admin']), restaurantName],
+	restaurantController.getItems
+)
+
+// Edit Item
+router.patch(
+	'/item/:restaurantId',
+	[authVerification(['admin']), restaurantName],
+	restaurantController.editItem
+)
+
+// Delete Item
+router.delete(
+	'/item/:restaurantId',
+	[authVerification(['admin']), restaurantName],
+	restaurantController.deleteItem
 )
 
 export { router as restaurantsRouter }

@@ -36,7 +36,7 @@ export const addItem = async (req: any, res: any) => {
 		res.status(200).json({
 			success: true,
 			message: 'Item added successfully',
-			data: item,
+			data: item?.categories,
 		})
 	} catch (error) {
 		res.status(500).json({
