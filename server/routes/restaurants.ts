@@ -13,8 +13,11 @@ router.post(
 	restaurantController.addRestaurant
 )
 
+// Get All Restaurants
+router.get('/', restaurantController.getRestaurants)
+
 // Edit Image
-router.post(
+router.patch(
 	'/image/:restaurantId',
 	[authVerification(['admin']), restaurantName, upload.single('image')],
 	restaurantController.editImage
