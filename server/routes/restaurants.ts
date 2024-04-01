@@ -23,4 +23,11 @@ router.patch(
 	restaurantController.editImage
 )
 
+// Add Item
+router.post(
+	'/item/:restaurantId',
+	[authVerification(['admin']), restaurantName],
+	restaurantController.addItem
+)
+
 export { router as restaurantsRouter }

@@ -20,8 +20,12 @@ const restaurantSchema = new Schema({
 			},
 			items: [
 				{
-					type: Schema.Types.ObjectId,
-					ref: 'items',
+					name: {
+						type: String,
+					},
+					price: {
+						type: Number,
+					},
 				},
 			],
 		},
