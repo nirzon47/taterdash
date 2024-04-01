@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import userController from '../controllers/users'
+import userController from '../controllers/users/users'
 import authVerification from '../middlewares/authVerification'
 
 const router = Router()
