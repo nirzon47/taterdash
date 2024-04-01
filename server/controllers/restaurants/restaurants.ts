@@ -1,13 +1,18 @@
 import { addRestaurant } from './addRestaurant'
-import { editImage } from './editImage'
 import { getRestaurants } from './getRestaurants'
+import { editRestaurant } from './editRestaurant'
+import { deleteRestaurant } from './deleteRestaurant'
+
 import { addItem } from './addItem'
+import { editImage } from './editImage'
 
 const restaurantController = {
 	addRestaurant,
-	editImage,
 	getRestaurants,
+	editRestaurant,
+	deleteRestaurant,
 	addItem,
+	editImage,
 }
 
 export default restaurantController
