@@ -14,7 +14,9 @@ export const addToCart = async (req: any, res: any) => {
 			})
 		}
 
-		const cart = await cartModel.findOne({ user: user._id })
+		const cart = await cartModel
+			.findOne({ user: user._id })
+			.select('items -_id')
 
 		// If cart does not exist
 		if (!cart) {
@@ -50,7 +52,7 @@ export const addToCart = async (req: any, res: any) => {
 		// Add item to cart
 		const newCart = await cartModel.findOneAndUpdate(
 			{ user: user._id },
-			{ $push: { items: itemId } },
+			{ $push: { items: { item: itemId, quantity } } },
 			{ new: true }
 		)
 
@@ -58,7 +60,7 @@ export const addToCart = async (req: any, res: any) => {
 		res.status(200).json({
 			success: true,
 			message: 'Item added to cart successfully',
-			cart,
+			cart: newCart,
 		})
 	} catch (error: Error | any) {
 		res.status(500).json({

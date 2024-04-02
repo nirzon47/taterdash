@@ -6,6 +6,7 @@ import { usersRouter } from './routes/users'
 import { restaurantsRouter } from './routes/restaurants'
 import { itemRouter } from './routes/item'
 import { cartRouter } from './routes/cart'
+import { orderRouter } from './routes/order'
 
 const PORT = process.env.PORT || 10000
 const app = express()
@@ -26,5 +27,6 @@ app.use('/api/v1/users', usersRouter)
 app.use('/api/v1/restaurant', restaurantsRouter)
 app.use('/api/v1/item', itemRouter)
 app.use('/api/v1/cart', cartRouter)
+app.use('/api/v1/checkout', orderRouter)
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
