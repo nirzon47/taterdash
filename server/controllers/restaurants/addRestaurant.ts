@@ -1,45 +1,38 @@
 import { restaurantModel } from '../../models/restaurants'
 
+// Controller for adding restaurant
 export const addRestaurant = async (req: any, res: any) => {
 	try {
-		const { name, cuisine } = req.body
+		let { name, cuisine } = req.body
 
-		const cuisineArray = cuisine.split(',')
+		// Split the cuisine string into an array
+		cuisine = cuisine.split(',').map((cuisine: string) => cuisine.trim())
 
-		// If any field is missing
-		if (!name || !cuisine) {
-			return res
-				.status(400)
-				.json({ success: false, message: 'Name and cuisine are required' })
-		}
-
-		const restaurantsInDB = await restaurantModel.find()
-
-		// If restaurant already exists
-		const existingRestaurant = restaurantsInDB.find(
-			(restaurant: any) => restaurant.name === name
-		)
-
-		if (existingRestaurant) {
+		// Check if the restaurant already exists
+		const restaurants = await restaurantModel.find()
+		if (
+			restaurants &&
+			restaurants.find((restaurant: any) => restaurant.name === name)
+		) {
 			return res.status(400).json({
 				success: false,
 				message: 'Restaurant already exists',
 			})
 		}
 
-		// Add restaurant to database
-		const restaurant = await restaurantModel.create({
+		// Create a new restaurant
+		const newRestaurant = await restaurantModel.create({
 			name,
-			cuisine: cuisineArray.map((item: any) => item.trim()),
+			cuisine: cuisine.map((cuisine: string) => cuisine),
 		})
 
 		// Upon success, send the restaurant
-		res.status(200).json({
+		res.status(201).json({
 			success: true,
 			message: 'Restaurant added successfully',
-			data: restaurant,
+			restaurant: newRestaurant,
 		})
-	} catch (error: Error | any) {
+	} catch (error: any) {
 		res.status(500).json({
 			success: false,
 			message: error.message || 'Error adding restaurant',

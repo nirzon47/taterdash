@@ -6,6 +6,13 @@ const restaurantName = async (req: any, res: any, _next: any) => {
 
 		const restaurant = await restaurantModel.findOne({ _id: restaurantId })
 
+		if (!restaurant) {
+			return res.status(404).json({
+				success: false,
+				message: 'Restaurant not found',
+			})
+		}
+
 		req.restaurant = restaurant
 
 		_next()
