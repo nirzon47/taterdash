@@ -5,18 +5,23 @@ export const getRestaurantDetails = async (req: any, res: any) => {
 	try {
 		const { restaurantId } = req.params
 
+		// Get the restaurant
 		const restaurant = await restaurantModel
 			.findOne({ _id: restaurantId })
-			.populate('categories categories.items')
+			.populate({
+				path: 'categories',
+				populate: {
+					path: 'items',
+				},
+			})
 
+		// If restaurant not found
 		if (!restaurant) {
 			return res.status(404).json({
 				success: false,
 				message: 'Restaurant not found',
 			})
 		}
-
-		// TODO: Check if the population works
 
 		// Upon success, send the restaurant
 		res.status(200).json({

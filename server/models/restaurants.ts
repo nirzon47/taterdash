@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose'
 
+/// Schema for the items
 const itemSchema = new Schema({
 	category: {
 		type: Schema.Types.ObjectId,
@@ -15,6 +16,7 @@ const itemSchema = new Schema({
 	},
 })
 
+/// Schema for the categories
 const categorySchema = new Schema({
 	restaurantId: {
 		type: Schema.Types.ObjectId,
@@ -32,6 +34,7 @@ const categorySchema = new Schema({
 	],
 })
 
+/// Schema for the restaurants
 const restaurantSchema = new Schema({
 	name: {
 		type: String,

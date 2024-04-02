@@ -50,11 +50,13 @@ const authVerification =
 					}
 				}
 			}
-			userFromDB = await userModel.findOneAndUpdate(
-				{ _id: user._id },
-				{ tokens: refreshedToken },
-				{ new: true }
-			)
+			userFromDB = await userModel
+				.findOneAndUpdate(
+					{ _id: user._id },
+					{ tokens: refreshedToken },
+					{ new: true }
+				)
+				.select('-__v -password -address -tokens')
 
 			// Set user in request
 			req.user = userFromDB
