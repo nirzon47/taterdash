@@ -1,7 +1,8 @@
 import { addRestaurant } from './addRestaurant'
-// import { getRestaurants } from './getRestaurants'
+import { getRestaurants } from './getRestaurants'
+import { getRestaurantDetails } from './getRestaurantDetails'
 import { editRestaurant } from './editRestaurant'
-// import { editImage } from './editImage'
+import { editRestaurantImage } from './editRestaurantImage'
 import { deleteRestaurant } from './deleteRestaurant'
 
 // import { addItem } from './addItem'
@@ -11,9 +12,10 @@ import { deleteRestaurant } from './deleteRestaurant'
 
 const restaurantController = {
 	addRestaurant,
-	// getRestaurants,
+	getRestaurants,
+	getRestaurantDetails,
 	editRestaurant,
-	// editImage,
+	editRestaurantImage,
 	deleteRestaurant,
 	// addItem,
 	// getItems,

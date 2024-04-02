@@ -14,8 +14,11 @@ router.post(
 	restaurantController.addRestaurant
 )
 
-// // Get All Restaurants
-// router.get('/', restaurantController.getRestaurants)
+// Get All Restaurants
+router.get('/', restaurantController.getRestaurants)
+
+// Get a Restaurant Details
+router.get('/:restaurantId', restaurantController.getRestaurantDetails)
 
 // Edit Restaurant
 router.patch(
@@ -24,12 +27,12 @@ router.patch(
 	restaurantController.editRestaurant
 )
 
-// // Edit Image
-// router.patch(
-// 	'/image/:restaurantId',
-// 	[authVerification(['admin']), restaurantName, upload.single('image')],
-// 	restaurantController.editImage
-// )
+// Edit Image
+router.patch(
+	'/:restaurantId/image',
+	[authVerification(['admin']), restaurantName, upload.single('image')],
+	restaurantController.editRestaurantImage
+)
 
 // Delete Restaurant
 router.delete(
