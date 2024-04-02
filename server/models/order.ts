@@ -5,11 +5,7 @@ const orderSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'users',
 	},
-	created: {
-		type: Date,
-		default: Date.now,
-	},
-	order: [
+	orders: [
 		{
 			items: [
 				{
@@ -27,6 +23,10 @@ const orderSchema = new Schema({
 				state: String,
 				zip: String,
 				country: String,
+			},
+			created: {
+				type: Date,
+				default: Date.now,
 			},
 			status: {
 				type: String,

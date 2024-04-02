@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid'
 import { cartModel } from '../../models/cart'
 import { userModel } from '../../models/users'
 import Razorpay from 'razorpay'
+import { orderModel } from '../../models/order'
 
 const razorpay = new Razorpay({
 	key_id: process.env.RAZORPAY_KEY_ID as string,
@@ -17,6 +18,14 @@ export const checkout = async (req: any, res: any) => {
 		const cart = await cartModel
 			.findOne({ user: user._id })
 			.populate('items.item')
+
+		// If cart does not exist
+		if (!cart) {
+			return res.status(400).json({
+				success: false,
+				message: 'Cart not found',
+			})
+		}
 
 		const { paymentMethod, coupon, newAddress } = req.body
 
@@ -67,9 +76,10 @@ export const checkout = async (req: any, res: any) => {
 
 		// Create order
 		const orderObject = {
-			user: user._id,
-			created: Date.now(),
-			order: cart,
+			items: cart?.items.map((item: any) => ({
+				item: item.item._id,
+				quantity: item.quantity,
+			})),
 			total,
 			address: newAddress || userAddress?.address,
 			status: 'pending',
@@ -82,23 +92,40 @@ export const checkout = async (req: any, res: any) => {
 			orderObject.paymentId = 'cod'
 
 			await cartModel.deleteOne({ user: user._id })
-			await userModel.findByIdAndUpdate(user._id, {
-				$push: { orders: orderObject },
-			})
+
+			// If order does not exist, create it
+			const order = await orderModel.findOne({ user: user._id })
+			if (!order) {
+				await orderModel.create({
+					user: user._id,
+					orders: [],
+				})
+			}
+
+			// Pushes order
+			const updatedOrder = await orderModel.findOneAndUpdate(
+				{ user: user._id },
+				{
+					$push: { orders: orderObject },
+				}
+			)
 
 			return res.status(200).json({
 				success: true,
 				message: 'Order placed successfully',
 				order: orderObject,
+				orderId: updatedOrder?._id,
 			})
 		}
 
+		// If payment method is online
 		const razorpayOptions = {
 			amount: (total as number) * 100,
 			currency: 'INR',
 			receipt: nanoid(),
 		}
 
+		// Create razorpay order
 		let razorpayOrder
 		try {
 			razorpayOrder = await razorpay.orders.create(razorpayOptions)
@@ -109,17 +136,33 @@ export const checkout = async (req: any, res: any) => {
 			})
 		}
 
+		// Update order
 		orderObject.paymentId = razorpayOrder.id
 
+		// Save order and delete cart
 		await cartModel.deleteOne({ user: user._id })
-		await userModel.findByIdAndUpdate(user._id, {
-			$push: { orders: orderObject },
-		})
+
+		// If order does not exist, create it
+		const order = await orderModel.findOne({ user: user._id })
+		if (!order) {
+			await orderModel.create({
+				user: user._id,
+				orders: [],
+			})
+		}
+
+		const updatedOrder = await orderModel.findOneAndUpdate(
+			{ user: user._id },
+			{
+				$push: { orders: orderObject },
+			}
+		)
 
 		res.status(200).json({
 			success: true,
 			message: 'Order placed successfully',
 			order: orderObject,
+			orderId: updatedOrder?._id,
 		})
 	} catch (error: Error | any) {
 		res.status(500).json({
