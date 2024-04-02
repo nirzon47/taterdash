@@ -11,4 +11,14 @@ router.post(
 	itemsController.addItem
 )
 
+// Edit Item
+router.patch('/:itemId', authVerification(['admin']), itemsController.editItem)
+
+// Delete Item
+router.delete(
+	'/:itemId',
+	authVerification(['admin']),
+	itemsController.deleteItem
+)
+
 export { router as itemRouter }
