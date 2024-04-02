@@ -14,4 +14,11 @@ router.get(
 	orderController.orderHistory
 )
 
+// Confirm Payment
+router.post(
+	'/confirm',
+	authVerification(['admin', 'user']),
+	orderController.confirmPayment
+)
+
 export { router as orderRouter }
