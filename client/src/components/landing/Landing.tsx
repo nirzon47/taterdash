@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Navigation from './Navigation'
 import LandingText from './LandingText'
-import RestaurantLinks from './RestaurantLinks'
 
 const Landing = () => {
 	return (
