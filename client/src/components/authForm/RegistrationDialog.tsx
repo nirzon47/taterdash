@@ -1,8 +1,4 @@
-import {
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-} from '@/components/ui/dialog'
+import { DialogContent } from '@/components/ui/dialog'
 import RegistrationForm from './RegistrationForm'
 
 const RegistrationDialog = () => {

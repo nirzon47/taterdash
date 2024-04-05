@@ -1,8 +1,4 @@
-import {
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-} from '@/components/ui/dialog'
+import { DialogContent } from '@/components/ui/dialog'
 import LoginForm from './LoginForm'
 
 const LoginDialog = () => {

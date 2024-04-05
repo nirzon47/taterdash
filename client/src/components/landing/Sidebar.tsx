@@ -1,14 +1,7 @@
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from '@/components/ui/dialog'
-import RegistrationForm from '../authForm/RegistrationForm'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+
 import RegistrationDialog from '../authForm/RegistrationDialog'
 import LoginDialog from '../authForm/LoginDialog'
 
