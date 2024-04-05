@@ -5,7 +5,7 @@ FROM oven/bun:1
 WORKDIR /app
 
 # Copy the application code and related files
-COPY /server .
+COPY . .
 
 # Install Bun dependencies (if any)
 RUN bun install
