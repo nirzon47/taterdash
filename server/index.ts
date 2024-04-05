@@ -14,7 +14,7 @@ const app = express()
 // MongoDB Connection
 mongoose
 	.connect(process.env.MONGO_URI as string, {
-		dbName: 'tater-dash',
+		dbName: 'taterdash',
 	})
 	.then(() => console.log('Connected to MongoDB'))
 	.catch(() => console.log('Failed to connect to MongoDB'))
