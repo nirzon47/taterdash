@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/dialog'
 import RegistrationForm from '../authForm/RegistrationForm'
 import RegistrationDialog from '../authForm/RegistrationDialog'
+import LoginDialog from '../authForm/LoginDialog'
 
 const overlayVariants = {
 	initial: { opacity: 0, x: '-100%' },
@@ -37,16 +38,7 @@ const Sidebar = ({ handleShowOverlay }: { handleShowOverlay: () => void }) => {
 				<a href=''>Add restaurant</a>
 				<Dialog>
 					<DialogTrigger className='text-left'>Log in</DialogTrigger>
-					<DialogContent>
-						<DialogHeader>
-							<DialogTitle>Are you absolutely sure?</DialogTitle>
-							<DialogDescription>
-								This action cannot be undone. This will permanently
-								delete your account and remove your data from our
-								servers.
-							</DialogDescription>
-						</DialogHeader>
-					</DialogContent>
+					<LoginDialog />
 				</Dialog>
 				<Dialog>
 					<DialogTrigger className='text-left'>Sign up</DialogTrigger>

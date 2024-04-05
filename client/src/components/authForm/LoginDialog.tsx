@@ -3,22 +3,22 @@ import {
 	DialogDescription,
 	DialogHeader,
 } from '@/components/ui/dialog'
-import RegistrationForm from './RegistrationForm'
+import LoginForm from './LoginForm'
 
-const RegistrationDialog = () => {
+const LoginDialog = () => {
 	return (
 		<DialogContent>
 			<h2 className='text-left mb-6 text-2xl tracking-wide font-medium text-zinc-600'>
-				Sign up
+				Log in
 			</h2>
 
-			<RegistrationForm />
+			<LoginForm />
 			<hr className='my-6' />
 			<div>
 				<p className='text-lg font-light'>
-					Already have an account?{' '}
+					New to taterDash?{' '}
 					<a href='' className='text-primary'>
-						Log in
+						Sign up
 					</a>
 				</p>
 			</div>
@@ -26,4 +26,4 @@ const RegistrationDialog = () => {
 	)
 }
 
-export default RegistrationDialog
+export default LoginDialog
