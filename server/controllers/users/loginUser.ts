@@ -33,7 +33,7 @@ export const loginUser = async (req: any, res: any) => {
 			lastName: user.lastName,
 			email: user.email,
 			role: user.role,
-			exp: dayjs().add(1, 'hour').unix(), // 1 hour
+			exp: dayjs().add(7, 'day').unix(), // 1 hour
 		}
 
 		// Generate JWT

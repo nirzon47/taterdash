@@ -3,11 +3,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import axios from 'axios'
+import { useToast } from '../ui/use-toast'
 
+// Zod validation
 const formSchema = z.object({
 	email: z.string().email({
 		message: 'Must be an email.',
@@ -18,14 +20,68 @@ const formSchema = z.object({
 })
 
 const LoginForm = () => {
+	const { toast } = useToast()
+
+	// Form initialization
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {},
+		defaultValues: {
+			email: '',
+			password: '',
+		},
 	})
+
+	// Form submission
+	const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+		const { email, password } = values
+
+		// Timeout for server spin message
+		let timeout
+		try {
+			timeout = setTimeout(() => {
+				toast({
+					title: 'Server spinning up',
+					description: 'Please wait while we log you in',
+					duration: 4000,
+				})
+			}, 3000)
+
+			// Form submission
+			const { data } = await axios.post(
+				`${process.env.NEXT_PUBLIC_BASE_URL}/users/login`,
+				{
+					email,
+					password,
+				}
+			)
+
+			// Clear timeout
+			clearTimeout(timeout)
+
+			// Store token in local storage
+			localStorage.setItem('token', data.token)
+			// Reload page
+			window.location.reload()
+		} catch (error) {
+			// Clear timeout
+			clearTimeout(timeout)
+
+			// Show error
+			toast({
+				title: 'Error',
+				description: 'Invalid email or password',
+				duration: 2000,
+				variant: 'destructive',
+			})
+		}
+	}
 
 	return (
 		<Form {...form}>
-			<form className='grid gap-4'>
+			<form
+				className='grid gap-4'
+				onSubmit={form.handleSubmit(handleSubmit)}
+			>
 				<FormField
 					control={form.control}
 					name='email'

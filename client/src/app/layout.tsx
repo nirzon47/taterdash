@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import { Toaster } from '@/components/ui/toaster'
 import { Archivo_Black } from 'next/font/google'
 
 import './globals.css'
@@ -25,6 +26,7 @@ export default function RootLayout({
 		<html lang='en' className={archivo.variable}>
 			<body className={`${GeistSans.className} antialiased`}>
 				{children}
+				<Toaster />
 			</body>
 		</html>
 	)
