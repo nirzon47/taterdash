@@ -3,7 +3,7 @@ import { restaurantModel } from '../../models/restaurants'
 // Controller for adding restaurant
 export const addRestaurant = async (req: any, res: any) => {
 	try {
-		let { name, cuisine } = req.body
+		let { name, cuisine, rating, deliveryTimeInMinutes } = req.body
 
 		// Split the cuisine string into an array
 		cuisine = cuisine.split(',').map((cuisine: string) => cuisine.trim())
@@ -20,10 +20,19 @@ export const addRestaurant = async (req: any, res: any) => {
 			})
 		}
 
+		if (!name || !cuisine || !rating || !deliveryTimeInMinutes) {
+			return res.status(404).json({
+				success: false,
+				message: 'All fields are compulsory',
+			})
+		}
+
 		// Create a new restaurant
 		const newRestaurant = await restaurantModel.create({
 			name,
 			cuisine: cuisine.map((cuisine: string) => cuisine),
+			rating,
+			deliveryTimeInMinutes,
 		})
 
 		// Upon success, send the restaurant

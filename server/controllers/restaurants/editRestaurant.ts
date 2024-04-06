@@ -3,7 +3,7 @@ import { restaurantModel } from '../../models/restaurants'
 // Controller for editing restaurant
 export const editRestaurant = async (req: any, res: any) => {
 	try {
-		let { name, cuisine } = req.body
+		let { name, cuisine, rating, deliveryTimeInMinutes } = req.body
 
 		const { restaurant } = req
 
@@ -15,6 +15,12 @@ export const editRestaurant = async (req: any, res: any) => {
 			cuisine = restaurant.cuisine
 			cuisine = cuisine.join(',')
 		}
+		if (!rating) {
+			rating = restaurant.rating
+		}
+		if (!deliveryTimeInMinutes) {
+			deliveryTimeInMinutes = restaurant.deliveryTimeInMinutes
+		}
 
 		// Split the cuisine string into an array
 		cuisine = cuisine.split(',').map((cuisine: string) => cuisine.trim())
@@ -25,6 +31,8 @@ export const editRestaurant = async (req: any, res: any) => {
 			{
 				name,
 				cuisine: cuisine.map((cuisine: string) => cuisine),
+				rating,
+				deliveryTimeInMinutes,
 			},
 			{ new: true }
 		)
