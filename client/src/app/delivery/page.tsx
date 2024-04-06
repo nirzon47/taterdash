@@ -1,5 +1,6 @@
 import BrandCarousel from '@/components/delivery/BrandCarousel'
 import DeliveryCarousel from '@/components/delivery/DeliveryCarousel'
+import Footer from '@/components/footer/Footer'
 import Header from '@/components/homepage/Header'
 import Navigation from '@/components/homepage/Navigation'
 
@@ -18,6 +19,7 @@ const Delivery = () => {
 			<div className='max-w-[68rem] mx-auto'>
 				<BrandCarousel />
 			</div>
+			<Footer />
 		</div>
 	)
 }

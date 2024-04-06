@@ -1,4 +1,5 @@
 import DineoutCarousel from '@/components/dineout/DineoutCarousel'
+import Footer from '@/components/footer/Footer'
 import Header from '@/components/homepage/Header'
 import Navigation from '@/components/homepage/Navigation'
 
@@ -21,6 +22,7 @@ const DineOut = () => {
 					<DineoutCarousel />
 				</div>
 			</div>
+			<Footer />
 		</div>
 	)
 }
