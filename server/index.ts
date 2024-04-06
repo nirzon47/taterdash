@@ -26,7 +26,7 @@ mongoose
 // Middlewares
 app.use(express.json()) // for parsing application/json
 app.use(cors()) // for allowing cross-origin requests
-app.use(morgan(':method | Endpoint - :url | :date[web] | :response-time ms')) // for logging4
+app.use(morgan(':method | Endpoint - :url | :date[web] | :response-time ms')) // for logging
 app.use('/uploads', express.static(join(__dirname, 'uploads'))) // Serve static files
 
 // Routes
