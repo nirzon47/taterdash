@@ -8,6 +8,10 @@ import { itemRouter } from './routes/item'
 import { cartRouter } from './routes/cart'
 import { orderRouter } from './routes/order'
 
+import { join } from 'path'
+import { fileURLToPath } from 'url'
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
+
 const PORT = process.env.PORT || 10000
 const app = express()
 
@@ -22,7 +26,8 @@ mongoose
 // Middlewares
 app.use(express.json()) // for parsing application/json
 app.use(cors()) // for allowing cross-origin requests
-app.use(morgan(':method | Endpoint - :url | :date[web] | :response-time ms')) // for logging
+app.use(morgan(':method | Endpoint - :url | :date[web] | :response-time ms')) // for logging4
+app.use('/uploads', express.static(join(__dirname, 'uploads'))) // Serve static files
 
 // Routes
 app.use('/api/v1/users', usersRouter)
