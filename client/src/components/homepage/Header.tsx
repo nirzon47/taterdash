@@ -21,13 +21,13 @@ const Header = () => {
 	}, [])
 
 	return (
-		<nav className='max-w-[68rem] mx-auto py-4 flex items-center justify-between mb-4'>
+		<header className='mx-auto py-4 flex items-center justify-between mb-4'>
 			<div className='flex gap-8 items-center'>
 				<Logo />
 				<SearchBar />
 			</div>
 			<DropdownComponent user={user} />
-		</nav>
+		</header>
 	)
 }
 

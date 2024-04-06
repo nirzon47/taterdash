@@ -1,13 +1,13 @@
 import Header from '@/components/homepage/Header'
 import Navigation from '@/components/homepage/Navigation'
 
-const DineOut = () => {
+const page = () => {
 	return (
 		<div className='max-w-[68rem] mx-auto'>
 			<Header />
-			<Navigation active='dine-out' />
+			<Navigation active='nightlife' />
 		</div>
 	)
 }
 
-export default DineOut
+export default page
