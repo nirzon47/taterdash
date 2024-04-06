@@ -58,6 +58,12 @@ const restaurantSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
+	rating: {
+		type: Number,
+	},
+	deliveryTimeInMinutes: {
+		type: Number,
+	},
 })
 
 export const restaurantModel = model('restaurants', restaurantSchema)
