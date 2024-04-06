@@ -7,7 +7,7 @@ const RestaurantLinks = () => {
 	return (
 		<div className='grid items-center justify-center grid-cols-1 mb-4 gap-x-4 gap-y-8 md:grid-cols-3'>
 			{cityArray.map((city) => (
-				<RestaurantLinkCard href='#' city={city} key={city} />
+				<RestaurantLinkCard city={city} key={city} />
 			))}
 		</div>
 	)

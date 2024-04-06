@@ -8,6 +8,8 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import axios from 'axios'
 import { useToast } from '../ui/use-toast'
+import { useState } from 'react'
+import Image from 'next/image'
 
 // Zod validation
 const formSchema = z.object({
@@ -21,6 +23,7 @@ const formSchema = z.object({
 
 const LoginForm = () => {
 	const { toast } = useToast()
+	const [disabled, setDisabled] = useState<boolean>(false)
 
 	// Form initialization
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -37,6 +40,7 @@ const LoginForm = () => {
 
 		// Timeout for server spin message
 		let timeout
+		setDisabled(true)
 		try {
 			timeout = setTimeout(() => {
 				toast({
@@ -73,6 +77,8 @@ const LoginForm = () => {
 				duration: 2000,
 				variant: 'destructive',
 			})
+		} finally {
+			setDisabled(false)
 		}
 	}
 
@@ -108,7 +114,19 @@ const LoginForm = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit'>Submit</Button>
+				{disabled && (
+					<div className='flex justify-center items-center'>
+						<Image
+							src='/loader.svg'
+							alt='spinner'
+							width={32}
+							height={32}
+						/>
+					</div>
+				)}
+				<Button type='submit' disabled={disabled}>
+					Submit
+				</Button>
 			</form>
 		</Form>
 	)

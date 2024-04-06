@@ -16,7 +16,7 @@ const DropdownComponent = ({ user }: { user: any }) => {
 					<AvatarImage src={'/avatar.jpeg'} />
 					<AvatarFallback>TD</AvatarFallback>
 				</Avatar>
-				<span className='mx-2 text-lg'>{user.firstName}</span>
+				<span className='mx-2 text-lg'>{user?.firstName}</span>
 				<ChevronDown size={16} />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>

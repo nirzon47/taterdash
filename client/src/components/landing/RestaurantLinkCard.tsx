@@ -1,14 +1,19 @@
-import { ChevronRight } from 'lucide-react'
+'use client'
 
-const RestaurantLinkCard = ({ href, city }: { href: string; city: string }) => {
+import { ChevronRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+
+const RestaurantLinkCard = ({ city }: { city: string }) => {
+	const router = useRouter()
+
 	return (
-		<a
-			href={href}
-			className='flex items-center justify-between px-6 py-4 text-lg font-light duration-200 border rounded-md shadow hover:shadow-lg'
+		<span
+			className='flex items-center justify-between px-6 py-4 text-lg font-light duration-200 border rounded-md shadow hover:shadow-lg cursor-pointer'
+			onClick={() => router.push(`/delivery`)}
 		>
 			{city}
 			<ChevronRight size={12} />
-		</a>
+		</span>
 	)
 }
 

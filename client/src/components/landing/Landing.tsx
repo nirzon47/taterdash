@@ -1,8 +1,15 @@
+'use client'
+
 import Image from 'next/image'
 import Navigation from './Navigation'
 import LandingText from './LandingText'
+import { useEffect } from 'react'
 
 const Landing = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
+
 	return (
 		<div>
 			<div className='relative'>

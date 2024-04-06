@@ -8,6 +8,8 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '../ui/use-toast'
 import axios from 'axios'
+import { useState } from 'react'
+import Image from 'next/image'
 
 // Zod validation
 const formSchema = z.object({
@@ -27,6 +29,7 @@ const formSchema = z.object({
 
 const RegistrationForm = () => {
 	const { toast } = useToast()
+	const [disabled, setDisabled] = useState<boolean>(false)
 
 	// Form initialization
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -42,6 +45,7 @@ const RegistrationForm = () => {
 	// Form submission
 	const handleSubmit = async (values: z.infer<typeof formSchema>) => {
 		const { firstName, lastName, email, password } = values
+		setDisabled(true)
 
 		// Timeout for server spin message
 		let timeout
@@ -73,8 +77,12 @@ const RegistrationForm = () => {
 			toast({
 				title: 'Success',
 				description: 'Account created successfully',
-				duration: 2000,
+				duration: 3000,
 			})
+
+			setTimeout(() => {
+				window.location.reload()
+			}, 3_500)
 		} catch (error) {
 			// Clear timeout
 			clearTimeout(timeout)
@@ -86,6 +94,8 @@ const RegistrationForm = () => {
 				duration: 2000,
 				variant: 'destructive',
 			})
+		} finally {
+			setDisabled(false)
 		}
 	}
 
@@ -145,7 +155,19 @@ const RegistrationForm = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit'>Submit</Button>
+				{disabled && (
+					<div className='flex justify-center items-center'>
+						<Image
+							src='/loader.svg'
+							alt='spinner'
+							width={32}
+							height={32}
+						/>
+					</div>
+				)}
+				<Button type='submit' disabled={disabled}>
+					Submit
+				</Button>
 			</form>
 		</Form>
 	)
