@@ -61,8 +61,8 @@ const AddressForm = ({
 				setHasAddress(false)
 			}
 
-			form.reset(data.address)
-			setAddress(data.address)
+			form.reset(data.data)
+			setAddress(data.data)
 		} catch (error: Error | any) {
 			toast({
 				title: 'Oops!',

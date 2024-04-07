@@ -6,12 +6,14 @@ import { useCallback, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/store'
 import { setCart, setCartTotal } from '@/store/cartSlice'
 import CartItem from './CartItem'
+import { useRouter } from 'next/navigation'
 
 const CartBody = () => {
 	const [cartData, setCartData] = useState<any>()
 	const dispatch = useAppDispatch()
 	const { toast } = useToast()
 	const total = useAppSelector((state) => state.cart.total)
+	const router = useRouter()
 
 	const getCart = useCallback(async () => {
 		try {
@@ -68,7 +70,10 @@ const CartBody = () => {
 			</div>
 
 			<div className='flex justify-end'>
-				<button className='bg-primary hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md mt-6 duration-200'>
+				<button
+					className='bg-primary hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md mt-6 duration-200'
+					onClick={() => router.push('/checkout')}
+				>
 					Checkout
 				</button>
 			</div>
