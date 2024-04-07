@@ -11,7 +11,6 @@ const Header = () => {
 
 	useEffect(() => {
 		const user = verifyToken()
-		console.log(user)
 
 		if (!user) {
 			window.location.href = '/'

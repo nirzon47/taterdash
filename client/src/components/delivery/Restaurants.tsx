@@ -1,0 +1,63 @@
+'use client'
+
+import axios from 'axios'
+import { useCallback, useEffect, useState } from 'react'
+import { useToast } from '../ui/use-toast'
+import RestaurantCard from './RestaurantCard'
+
+const Restaurants = () => {
+	const [restaurants, setRestaurants] = useState<any>([])
+	const [loading, setLoading] = useState<boolean>(false)
+
+	const { toast } = useToast()
+
+	const getRestaurants = useCallback(async () => {
+		let timeout
+		setLoading(true)
+
+		try {
+			timeout = setTimeout(() => {
+				toast({
+					title: 'Server spinning up',
+					description: 'Please wait while we log you in',
+					duration: 4000,
+				})
+			}, 3000)
+
+			const { data } = await axios.get(
+				`${process.env.NEXT_PUBLIC_BASE_URL}/restaurant/`
+			)
+			console.log(data.restaurants)
+
+			setRestaurants(data.restaurants)
+		} catch (error) {
+			toast({
+				title: 'Oops!',
+				description:
+					'There seems to be an error fetching data from the server',
+			})
+		} finally {
+			setLoading(false)
+			clearTimeout(timeout)
+		}
+	}, [toast])
+
+	useEffect(() => {
+		getRestaurants()
+	}, [getRestaurants])
+
+	return (
+		<div className='pb-6 pt-24'>
+			<h2 className='text-3xl tracking-wide font-medium mb-6'>
+				Delivery Restaurants
+			</h2>
+			<div className='my-6 grid grid-cols-3 gap-8'>
+				{restaurants.map((restaurant: any) => (
+					<RestaurantCard restaurant={restaurant} key={restaurant._id} />
+				))}
+			</div>
+		</div>
+	)
+}
+
+export default Restaurants
