@@ -1,5 +1,7 @@
 import clsx from 'clsx'
+import { Star } from 'lucide-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const RestaurantCard = ({ restaurant }: { restaurant: any }) => {
 	let color
@@ -15,8 +17,13 @@ const RestaurantCard = ({ restaurant }: { restaurant: any }) => {
 		color = 'bg-zinc-200'
 	}
 
+	const router = useRouter()
+
 	return (
-		<div className='p-4 space-y-2 hover:shadow-md rounded-lg duration-200 cursor-pointer'>
+		<div
+			className='p-4 space-y-2 hover:shadow-md rounded-lg duration-200 cursor-pointer'
+			onClick={() => router.push(`delivery/${restaurant._id}`)}
+		>
 			<Image
 				src={`${process.env.NEXT_PUBLIC_URL}/${restaurant.imagePath}`}
 				alt={restaurant.name}
@@ -30,11 +37,11 @@ const RestaurantCard = ({ restaurant }: { restaurant: any }) => {
 				</h2>
 				<p
 					className={clsx(
-						'p-0.5 rounded-md text-xs px-2 text-white font-medium',
+						'p-0.5 rounded-md text-xs px-2 text-white font-medium flex items-center gap-1',
 						color
 					)}
 				>
-					{restaurant.rating}
+					{restaurant.rating} <Star size={10} color='white' />
 				</p>
 			</div>
 			<div className='flex items-center justify-between'>

@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import { useToast } from '../ui/use-toast'
 import RestaurantCard from './RestaurantCard'
+import Image from 'next/image'
 
 const Restaurants = () => {
 	const [restaurants, setRestaurants] = useState<any>([])
@@ -27,7 +28,6 @@ const Restaurants = () => {
 			const { data } = await axios.get(
 				`${process.env.NEXT_PUBLIC_BASE_URL}/restaurant/`
 			)
-			console.log(data.restaurants)
 
 			setRestaurants(data.restaurants)
 		} catch (error) {
@@ -35,6 +35,7 @@ const Restaurants = () => {
 				title: 'Oops!',
 				description:
 					'There seems to be an error fetching data from the server',
+				variant: 'destructive',
 			})
 		} finally {
 			setLoading(false)
@@ -51,6 +52,11 @@ const Restaurants = () => {
 			<h2 className='text-3xl tracking-wide font-medium mb-6'>
 				Delivery Restaurants
 			</h2>
+			{loading && (
+				<div className='flex justify-center items-center my-4'>
+					<Image src='/loader.svg' alt='spinner' width={48} height={48} />
+				</div>
+			)}
 			<div className='my-6 grid grid-cols-3 gap-8'>
 				{restaurants.map((restaurant: any) => (
 					<RestaurantCard restaurant={restaurant} key={restaurant._id} />
