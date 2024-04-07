@@ -14,9 +14,7 @@ export const addToCart = async (req: any, res: any) => {
 			})
 		}
 
-		const cart = await cartModel
-			.findOne({ user: user._id })
-			.select('items -_id')
+		const cart = await cartModel.findOne({ user: user._id })
 
 		// If cart does not exist
 		if (!cart) {
@@ -35,6 +33,8 @@ export const addToCart = async (req: any, res: any) => {
 
 		// If restaurantId is different from the one in cart
 		if (cart?.restaurant?.toString() !== restaurantId) {
+			console.log(cart)
+
 			return res.status(400).json({
 				success: false,
 				message: 'Cannot add item to cart from different restaurant',
