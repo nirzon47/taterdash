@@ -38,7 +38,7 @@ const CartBody = () => {
 		} catch (error: any) {
 			toast({
 				title: 'Oops!',
-				description: error.response.data.message,
+				description: 'Looks like your cart is empty',
 				variant: 'destructive',
 			})
 		}
