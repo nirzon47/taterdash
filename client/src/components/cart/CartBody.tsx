@@ -59,6 +59,9 @@ const CartBody = () => {
 				</p>
 			</div>
 			<div className='space-y-4'>
+				{cartData?.length === 0 && (
+					<p className='text-center text-3xl'>Cart is empty</p>
+				)}
 				{cartData?.map((item: any) => (
 					<CartItem key={item._id} item={item} />
 				))}

@@ -31,6 +31,10 @@ export const deleteFromCart = async (req: any, res: any) => {
 			{ new: true }
 		)
 
+		if (newCart?.items.length === 0) {
+			await cartModel.findOneAndDelete({ user: user._id })
+		}
+
 		// Upon success, send the cart
 		return res.status(200).json({
 			success: true,
