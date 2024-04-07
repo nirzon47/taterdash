@@ -3,8 +3,7 @@ import { userModel } from '../models/users'
 
 // Verifies tokes, refreshes tokens, and checks permissions
 const authVerification =
-	([roles]: any) =>
-	async (req: any, res: any, _next: any) => {
+	(roles: any) => async (req: any, res: any, _next: any) => {
 		try {
 			// Get token from header
 			const token = req.headers.authorization?.split(' ')[1]
@@ -31,6 +30,7 @@ const authVerification =
 			// Permission check
 
 			const isAuthorized = roles.includes(userFromDB?.role)
+			console.log(roles)
 
 			if (!isAuthorized) {
 				return res.status(401).json({
