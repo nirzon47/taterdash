@@ -6,7 +6,7 @@ const MainImage = ({ restaurantDetails }: { restaurantDetails: any }) => {
 			<div className='overflow-hidden'>
 				<Image
 					src={`${process.env.NEXT_PUBLIC_URL}/${restaurantDetails?.imagePath}`}
-					alt={restaurantDetails?.name}
+					alt={restaurantDetails?.name || 'loading'}
 					width={690}
 					height={370}
 					className='object-cover hover:scale-105 duration-200 brightness-95 hover:brightness-100'

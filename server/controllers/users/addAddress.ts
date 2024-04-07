@@ -4,7 +4,6 @@ import { userModel } from '../../models/users'
 export const addAddress = async (req: any, res: any) => {
 	try {
 		const user = req.user
-		console.log(user._id)
 
 		const { street, city, state, zip, country } = req.body
 

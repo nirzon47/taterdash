@@ -8,12 +8,13 @@ import {
 } from '@/components/ui/dropdown-menu'
 import axios from 'axios'
 import { ChevronDown } from 'lucide-react'
+import { useToast } from '../ui/use-toast'
 
 const DropdownComponent = ({ user }: { user: any }) => {
+	const { toast } = useToast()
 	const logoutUser = async () => {
 		try {
 			const authorization = `Bearer ${localStorage.getItem('token')}`
-			console.log(authorization)
 
 			await axios.post(
 				`${process.env.NEXT_PUBLIC_BASE_URL}/users/logout`,
@@ -28,7 +29,12 @@ const DropdownComponent = ({ user }: { user: any }) => {
 			localStorage.removeItem('token')
 			window.location.href = '/'
 		} catch (error) {
-			console.log(error)
+			toast({
+				title: 'Oops!',
+				description: 'There seems to be an error logging out',
+				variant: 'destructive',
+				duration: 5000,
+			})
 		}
 	}
 
