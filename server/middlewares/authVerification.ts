@@ -8,6 +8,7 @@ const authVerification =
 		try {
 			// Get token from header
 			const token = req.headers.authorization?.split(' ')[1]
+			console.log(token)
 
 			// If token does not exist
 			if (!token) {
@@ -29,6 +30,7 @@ const authVerification =
 			}
 
 			// Permission check
+
 			const isAuthorized = roles.includes(userFromDB?.role)
 
 			if (!isAuthorized) {

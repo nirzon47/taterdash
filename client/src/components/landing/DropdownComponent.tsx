@@ -6,9 +6,32 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import axios from 'axios'
 import { ChevronDown } from 'lucide-react'
 
 const DropdownComponent = ({ user }: { user: any }) => {
+	const logoutUser = async () => {
+		try {
+			const authorization = `Bearer ${localStorage.getItem('token')}`
+			console.log(authorization)
+
+			await axios.post(
+				`${process.env.NEXT_PUBLIC_BASE_URL}/users/logout`,
+				null,
+				{
+					headers: {
+						Authorization: authorization,
+					},
+				}
+			)
+
+			localStorage.removeItem('token')
+			window.location.href = '/'
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger className='flex items-center'>
@@ -28,7 +51,7 @@ const DropdownComponent = ({ user }: { user: any }) => {
 				<DropdownMenuItem>Find friends</DropdownMenuItem>
 				<DropdownMenuItem>Settings</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem>Log out</DropdownMenuItem>
+				<DropdownMenuItem onClick={logoutUser}>Log out</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	)

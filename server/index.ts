@@ -12,7 +12,7 @@ import { join } from 'path'
 import { fileURLToPath } from 'url'
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
-const PORT = process.env.PORT || 10000
+const PORT = process.env.PORT || 6520
 const app = express()
 
 // MongoDB Connection
