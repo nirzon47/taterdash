@@ -49,13 +49,11 @@ const DropdownComponent = ({ user }: { user: any }) => {
 				<ChevronDown size={16} />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
-				<DropdownMenuItem>Profile</DropdownMenuItem>
-				<DropdownMenuItem>Notifications</DropdownMenuItem>
-				<DropdownMenuItem>Bookmarks</DropdownMenuItem>
-				<DropdownMenuItem>Reviews</DropdownMenuItem>
-				<DropdownMenuItem>Network</DropdownMenuItem>
-				<DropdownMenuItem>Find friends</DropdownMenuItem>
-				<DropdownMenuItem>Settings</DropdownMenuItem>
+				<DropdownMenuItem
+					onClick={() => (window.location.href = '/profile')}
+				>
+					Profile
+				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem onClick={logoutUser}>Log out</DropdownMenuItem>
 			</DropdownMenuContent>
