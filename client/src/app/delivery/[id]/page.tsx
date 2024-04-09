@@ -37,7 +37,7 @@ const RestaurantDetails = ({ params }: { params: { id: string } }) => {
 	}, [getDetails])
 
 	return (
-		<>
+		<div className='px-2 md:px-4 lg:px-0'>
 			<div className='max-w-[68rem] mx-auto relative mb-8'>
 				<Header />
 				<MainImage restaurantDetails={restaurantDetails} />
@@ -45,7 +45,7 @@ const RestaurantDetails = ({ params }: { params: { id: string } }) => {
 				<ProductList restaurantDetails={restaurantDetails} />
 			</div>
 			<Footer />
-		</>
+		</div>
 	)
 }
 

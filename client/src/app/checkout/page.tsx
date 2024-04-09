@@ -90,14 +90,14 @@ const Checkout = () => {
 				src='https://checkout.razorpay.com/v1/checkout.js'
 			/>
 			<Provider store={store}>
-				<div className='max-w-[68rem] mx-auto'>
+				<div className='max-w-[68rem] mx-auto px-2 md:px-4 lg:px-0'>
 					<Header />
 					<main className='p-4 md:px-8 md:py-12 lg:px-24 lg:py-16 md:grid-cols-2 md:gap-16'>
 						<h1 className='mb-8 text-xl font-light md:text-2xl lg:text-3xl'>
 							Checkout
 						</h1>
 						<section>
-							<div className='flex gap-24 mt-8'>
+							<div className='flex flex-col md:flex-row gap-8 md:gap-24 my-8 '>
 								<div className='space-y-6'>
 									<p className='text-lg font-semibold text-primary'>
 										Your order will be shipped to

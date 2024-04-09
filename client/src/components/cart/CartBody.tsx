@@ -53,10 +53,10 @@ const CartBody = () => {
 	return (
 		<>
 			<div className='flex justify-between items-center'>
-				<h1 className='text-3xl tracking-wide font-medium my-6 text-slate-700'>
+				<h1 className='text-xl md:text-3xl tracking-wide font-medium my-6 text-slate-700'>
 					Your Cart
 				</h1>
-				<p className='text-3xl'>
+				<p className='text-xl md:text-3xl'>
 					Total: <span className='text-primary'>₹{total}</span>
 				</p>
 			</div>

@@ -58,11 +58,13 @@ const CartItem = ({ item }: { item: any }) => {
 	}
 
 	return (
-		<div className='flex justify-between'>
-			<h2 className='text-xl font-light w-96'>{item.item.name}</h2>
+		<div className='flex justify-between items-center'>
+			<h2 className='text-base md:text-xl font-light w-96'>
+				{item.item.name}
+			</h2>
 			<div className='flex gap-4 items-center'>
 				<Select onValueChange={changeQuantity}>
-					<SelectTrigger className='w-24'>
+					<SelectTrigger className='w-16 md:w-24'>
 						<SelectValue placeholder={item.quantity} />
 					</SelectTrigger>
 					<SelectContent>

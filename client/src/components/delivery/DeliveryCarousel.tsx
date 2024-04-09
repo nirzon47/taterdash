@@ -24,14 +24,14 @@ const categories = [
 const DeliveryCarousel = () => {
 	return (
 		<div>
-			<h2 className='text-3xl tracking-wide font-medium mb-6'>
+			<h2 className='text-xl md:text-3xl tracking-wide font-medium mb-6'>
 				Categories we offer
 			</h2>
 			<Carousel>
 				<CarouselContent>
 					{Array.from({ length: 11 }).map((_, index: number) => (
 						<CarouselItem
-							className='basis-1/6 flex flex-col items-center gap-2'
+							className='basis-1/3 md:basis-1/4 lg:basis-1/6 flex flex-col items-center gap-2'
 							key={Math.random()}
 						>
 							<Image
@@ -41,14 +41,14 @@ const DeliveryCarousel = () => {
 								width={150}
 								className='rounded-full object-cover shadow-md'
 							/>
-							<p className='text-xl tracking-wide'>
+							<p className='text-base md:text-xl tracking-wide'>
 								{categories[index]}
 							</p>
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
+				<CarouselPrevious className='hidden lg:flex' />
+				<CarouselNext className='hidden lg:flex' />
 			</Carousel>
 		</div>
 	)

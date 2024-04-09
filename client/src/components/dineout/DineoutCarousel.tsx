@@ -22,7 +22,10 @@ const DineoutCarousel = () => {
 		<Carousel>
 			<CarouselContent>
 				{Array.from({ length: 7 }).map((_, index: number) => (
-					<CarouselItem key={Math.random()} className='basis-1/4'>
+					<CarouselItem
+						key={Math.random()}
+						className='basis-1/2 md:basis-1/3 lg:basis-1/4'
+					>
 						<div className='relative'>
 							<Image
 								src={`/dineout/dineout-${index + 1}.avif`}
@@ -39,8 +42,8 @@ const DineoutCarousel = () => {
 					</CarouselItem>
 				))}
 			</CarouselContent>
-			<CarouselPrevious />
-			<CarouselNext />
+			<CarouselPrevious className='hidden lg:flex' />
+			<CarouselNext className='hidden lg:flex' />
 		</Carousel>
 	)
 }

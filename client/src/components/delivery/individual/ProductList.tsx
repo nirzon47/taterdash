@@ -44,14 +44,16 @@ const ProductList = ({ restaurantDetails }: { restaurantDetails: any }) => {
 			<div className='space-y-12'>
 				{restaurantDetails?.categories.map((category: any) => (
 					<div key={category._id} className=''>
-						<h2 className='text-2xl font-medium tracking-wide mb-2'>
+						<h2 className='text-xl md:text-2xl font-medium tracking-wide mb-2'>
 							{category.name}
 						</h2>
 						<div className='space-y-3'>
 							{category.items.map((item: any) => (
 								<div key={item._id} className='flex justify-between'>
 									<div>
-										<p className='text-lg font-light'>{item.name}</p>
+										<p className='text-base md:text-lg font-light'>
+											{item.name}
+										</p>
 										<span>₹{item.price}</span>
 									</div>
 									<div

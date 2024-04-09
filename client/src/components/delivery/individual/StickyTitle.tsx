@@ -19,19 +19,21 @@ const StickyTitle = ({ restaurantDetails }: { restaurantDetails: any }) => {
 	return (
 		<section className='sticky top-0 py-6 space-y-2 bg-white z-10'>
 			<div className='items-center flex justify-between'>
-				<h1 className='text-4xl text-medium tracking-wide'>
+				<h1 className='text-2xl md:text-4xl text-medium tracking-wide'>
 					{restaurantDetails?.name}
 				</h1>
 				<div className='flex flex-col gap-0.5 items-center'>
 					<p
 						className={clsx(
-							'p-2 rounded-md px-4 text-white font-medium flex items-center gap-1',
+							'p-1 md:p-2 rounded-md text-sm md:text-base px-2 md:px-4 text-white font-medium flex items-center gap-1',
 							getColor(restaurantDetails?.rating)
 						)}
 					>
 						{restaurantDetails?.rating} <Star size={16} color='white' />{' '}
 					</p>
-					<span className='text-sm text-slate-600'>Rating</span>
+					<span className='text-sm text-slate-600 hidden md:inline-block'>
+						Rating
+					</span>
 				</div>
 			</div>
 			<p className='text-slate-500 font-light mb-4'>

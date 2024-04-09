@@ -4,7 +4,8 @@ const Logo = () => {
 			className='text-3xl italic font-archivo font-black cursor-pointer'
 			onClick={() => (window.location.href = '/')}
 		>
-			taterDash
+			<span className='hidden md:inline-block'>taterDash</span>
+			<span className='md:hidden'>tD</span>
 		</h2>
 	)
 }

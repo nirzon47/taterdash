@@ -34,7 +34,9 @@ const Header = () => {
 					className='bg-primary px-4 py-2 flex gap-2 rounded-md cursor-pointer hover:bg-red-600 duration-200'
 					onClick={() => router.push('/cart')}
 				>
-					<span className='font-bold text-white'>Cart </span>
+					<span className='font-bold text-white hidden md:inline-block'>
+						Cart{' '}
+					</span>
 					<ShoppingCartIcon color='white' />
 				</div>
 			</div>

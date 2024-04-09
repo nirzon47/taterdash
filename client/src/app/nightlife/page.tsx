@@ -4,7 +4,7 @@ import Navigation from '@/components/homepage/Navigation'
 
 const page = () => {
 	return (
-		<>
+		<div className='px-2 md:px-4 lg:px-0'>
 			<div className='max-w-[68rem] mx-auto'>
 				<Header />
 				<Navigation active='nightlife' />
@@ -18,7 +18,7 @@ const page = () => {
 				</p>
 			</div>
 			<Footer />
-		</>
+		</div>
 	)
 }
 

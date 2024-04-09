@@ -8,7 +8,7 @@ const Navigation = ({ active }: { active: string }) => {
 	const router = useRouter()
 
 	return (
-		<nav className='flex items-center gap-16 border-b mt-8'>
+		<nav className='flex items-center gap-8 md:gap-16 border-b mt-8'>
 			<button
 				onClick={() => {
 					!(active === 'delivery') && router.push('/delivery')
@@ -17,7 +17,7 @@ const Navigation = ({ active }: { active: string }) => {
 				<div className='flex items-center gap-2'>
 					<div
 						className={clsx(
-							'p-4 flex items-center rounded-full',
+							'p-2 flex items-center rounded-full',
 							active === 'delivery' ? 'bg-amber-100' : 'bg-zinc-200'
 						)}
 					>
@@ -35,7 +35,7 @@ const Navigation = ({ active }: { active: string }) => {
 					</div>
 					<h3
 						className={clsx(
-							'text-xl font-medium',
+							'hidden md:inline-block md:text-xl font-medium',
 							active === 'delivery' ? 'text-primary' : 'text-zinc-600'
 						)}
 					>
@@ -56,7 +56,7 @@ const Navigation = ({ active }: { active: string }) => {
 				<div className='flex items-center gap-2'>
 					<div
 						className={clsx(
-							'p-4 flex items-center rounded-full',
+							'p-2 flex items-center rounded-full',
 							active === 'dine-out' ? 'bg-emerald-100' : 'bg-zinc-200'
 						)}
 					>
@@ -74,7 +74,7 @@ const Navigation = ({ active }: { active: string }) => {
 					</div>
 					<h3
 						className={clsx(
-							'text-xl font-medium',
+							'hidden md:inline-block md:text-xl font-medium',
 							active === 'dine-out' ? 'text-primary' : 'text-zinc-600'
 						)}
 					>
@@ -95,7 +95,7 @@ const Navigation = ({ active }: { active: string }) => {
 				<div className='flex items-center gap-2'>
 					<div
 						className={clsx(
-							'p-4 flex items-center rounded-full',
+							'p-2 flex items-center rounded-full',
 							active === 'nightlife' ? 'bg-blue-100' : 'bg-zinc-200'
 						)}
 					>
@@ -113,7 +113,7 @@ const Navigation = ({ active }: { active: string }) => {
 					</div>
 					<h3
 						className={clsx(
-							'text-xl font-medium',
+							'hidden md:inline-block md:text-xl font-medium',
 							active === 'nightlife' ? 'text-primary' : 'text-zinc-600'
 						)}
 					>

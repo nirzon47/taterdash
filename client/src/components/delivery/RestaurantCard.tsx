@@ -21,7 +21,7 @@ const RestaurantCard = ({ restaurant }: { restaurant: any }) => {
 
 	return (
 		<div
-			className='p-4 space-y-2 hover:shadow-md rounded-lg duration-200 cursor-pointer'
+			className='p-4 space-y-2 hover:shadow-md rounded-lg duration-200 cursor-pointer grid justify-center items-center'
 			onClick={() => router.push(`delivery/${restaurant._id}`)}
 		>
 			<Image
@@ -29,7 +29,7 @@ const RestaurantCard = ({ restaurant }: { restaurant: any }) => {
 				alt={restaurant.name}
 				width={328}
 				height={248}
-				className='object-cover w-[330px] h-[240px] rounded-xl'
+				className='object-cover w-[270px] h-[204px] md:w-[330px] md:h-[240px] rounded-xl mx-auto'
 			/>
 			<div className='flex items-center justify-between'>
 				<h2 className='font-medium tracking-wider text-zinc-800'>
@@ -45,7 +45,7 @@ const RestaurantCard = ({ restaurant }: { restaurant: any }) => {
 				</p>
 			</div>
 			<div className='flex items-center justify-between'>
-				<p className='text-sm truncate text-zinc-500 font-light max-w-[60%]'>
+				<p className='text-sm truncate text-zinc-500 font-light max-w-[100px] md:max-w-[60%]'>
 					{restaurant.cuisine.join(', ')}
 				</p>
 				<p className='text-sm text-zinc-600 font-light'>

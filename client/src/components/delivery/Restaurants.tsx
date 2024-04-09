@@ -48,8 +48,8 @@ const Restaurants = () => {
 	}, [getRestaurants])
 
 	return (
-		<div className='pb-6 pt-24'>
-			<h2 className='text-3xl tracking-wide font-medium mb-6'>
+		<div className='pb-6 pt-12 md:pt-24'>
+			<h2 className='text-xl md:text-3xl tracking-wide font-medium mb-6'>
 				Delivery Restaurants
 			</h2>
 			{loading && (
@@ -57,7 +57,7 @@ const Restaurants = () => {
 					<Image src='/loader.svg' alt='spinner' width={48} height={48} />
 				</div>
 			)}
-			<div className='my-6 grid grid-cols-3 gap-8'>
+			<div className='my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
 				{restaurants.map((restaurant: any) => (
 					<RestaurantCard restaurant={restaurant} key={restaurant._id} />
 				))}

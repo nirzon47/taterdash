@@ -21,13 +21,16 @@ const brands = [
 const BrandCarousel = () => {
 	return (
 		<div className='my-8'>
-			<h2 className='text-3xl tracking-wide font-medium mb-6'>
+			<h2 className='text-xl md:text-3xl tracking-wide font-medium mb-6'>
 				Brands we love
 			</h2>
 			<Carousel>
 				<CarouselContent>
 					{Array.from({ length: 8 }).map((_, index: number) => (
-						<CarouselItem key={Math.random()} className='basis-1/6'>
+						<CarouselItem
+							key={Math.random()}
+							className='basis-1/3 md:basis-1/4 lg:basis-1/6'
+						>
 							<div className='flex flex-col items-center gap-4'>
 								<div className='p-4 grid place-content-center shadow-md rounded-full'>
 									<Image
@@ -38,13 +41,15 @@ const BrandCarousel = () => {
 										className='rounded-full'
 									/>
 								</div>
-								<p className='text-xl tracking-wide'>{brands[index]}</p>
+								<p className='text-base text-center md:text-xl tracking-wide'>
+									{brands[index]}
+								</p>
 							</div>
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
+				<CarouselPrevious className='hidden lg:flex' />
+				<CarouselNext className='hidden lg:flex' />
 			</Carousel>
 		</div>
 	)
